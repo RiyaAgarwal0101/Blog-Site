@@ -29,7 +29,7 @@ const Post = mongoose.model("Post", postSchema);
 
 app.get("/", function(req, res){
 
-  Post.find({}).then(function(posts){
+  Post.find({}).then(posts=>{
     res.render("home", {
       startingContent: homeStartingContent,
       posts: posts
