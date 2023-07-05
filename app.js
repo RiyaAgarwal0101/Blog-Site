@@ -25,7 +25,7 @@ const postSchema = {
 };
 
 const Post = mongoose.model("Post", postSchema);
-const posts=[];
+//const posts=[];
 
 app.get("/", function(req, res){
 
@@ -56,7 +56,7 @@ app.get("/posts/:postId", function(req, res){
 
 const requestedPostId = req.params.postId;
 
-  Post.findOne({_id: requestedPostId}, function(err, post){
+  Post.findOne({_id: requestedPostId}) .then(function(post){
     res.render("post", {
       title: post.title,
       content: post.content
