@@ -25,10 +25,11 @@ const postSchema = {
 };
 
 const Post = mongoose.model("Post", postSchema);
+const posts=[];
 
 app.get("/", function(req, res){
 
-  Post.find({}, function(err, posts){
+  Post.find({}).then(function(posts){
     res.render("home", {
       startingContent: homeStartingContent,
       posts: posts
@@ -47,11 +48,8 @@ app.post("/compose", function(req, res){
   });
 
 
-  post.save(function(err){
-    if (!err){
+  post.save();
         res.redirect("/");
-    }
-  });
 });
 
 app.get("/posts/:postId", function(req, res){
